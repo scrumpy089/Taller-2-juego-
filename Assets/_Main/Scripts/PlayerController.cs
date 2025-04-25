@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
-        playerAnimator = GetComponent<Animator>();  
+        //playerAnimator = GetComponent<Animator>();  
         hit_ps = GetComponentInChildren<ParticleSystem>(); 
 
     }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
         }
 
-        playerAnimator.SetFloat("IsRunning", movement);
+        //playerAnimator.SetFloat("IsRunning", movement);
 
         movement = Input.GetAxisRaw("Horizontal");
 
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
             }
             hitTime -= Time.deltaTime;  
 
-            playerAnimator.SetTrigger("IsAttacked");  
+            //playerAnimator.SetTrigger("IsAttacked");  
 
             
 
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            playerAnimator.SetTrigger("IsAttacked");
+            //playerAnimator.SetTrigger("IsAttacked");
         }
     }
 
