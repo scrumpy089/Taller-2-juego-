@@ -58,11 +58,18 @@ public class PlayerController : MonoBehaviour
     public PlatformEffector2D effector;
     public float waitTime = 0.5f;
 
+    private float lastTapTimeRight = 0f;
+    private float lastTapTimeLeft = 0f;
+    public float doubleTapThreshold = 0.3f;
+
+    private bool isSprinting = false;
+    public float sprintMultiplier = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
-        //playerAnimator = GetComponent<Animator>();  
+        playerAnimator = GetComponent<Animator>();  
         hit_ps = GetComponentInChildren<ParticleSystem>(); 
 
     }
@@ -81,20 +88,50 @@ public class PlayerController : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Space) && canJump == true)
-        {
-           
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && canJump == true)
+        {          
+            playerAnimator.SetTrigger("IsJumping");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && canJump == true)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
-        }
-
-        //playerAnimator.SetFloat("IsRunning", movement);
+        playerAnimator.SetFloat("IsMoving", movement);
 
         movement = Input.GetAxisRaw("Horizontal");
+
+        // Detecta Sprint a la derecha
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (Time.time - lastTapTimeRight < doubleTapThreshold)
+            {
+                isSprinting = true;
+            }
+            else
+            {
+                isSprinting = false;
+                lastTapTimeRight = Time.time;
+            }
+        }
+
+        // Detecta Sprint a la derecha
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (Time.time - lastTapTimeLeft < doubleTapThreshold)
+            {
+                isSprinting = true;
+            }
+            else
+            {
+                isSprinting = false;
+                lastTapTimeLeft = Time.time;
+            }
+        }
+        // Detiene sprint si no hay movimiento
+        if (movement == 0)
+        {
+            isSprinting = false;
+        }
+
+        playerAnimator.SetBool("IsSprinting", isSprinting);
 
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -115,7 +152,9 @@ public class PlayerController : MonoBehaviour
         if (hitTime <= 0)  
         {
             
-            transform.Translate(Time.deltaTime * (Vector2.right * movement) * speed);
+            //transform.Translate(Time.deltaTime * (Vector2.right * movement) * speed);
+            transform.Translate(Time.deltaTime * Vector2.right * movement * speed * (isSprinting ? sprintMultiplier : 1f));
+
         }
         else  
         {

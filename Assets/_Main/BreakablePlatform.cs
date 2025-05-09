@@ -41,7 +41,7 @@ public class BreakablePlatform : MonoBehaviour
     }
 
 
-    private System.Collections.IEnumerator BreakRoutine()
+    private IEnumerator BreakRoutine()
     {
         // 1. TEMBLAR
         float elapsed = 0f;
@@ -56,6 +56,7 @@ public class BreakablePlatform : MonoBehaviour
         transform.position = originalPosition;
         if (col != null) col.enabled = false;
         if (spriteRenderer != null) spriteRenderer.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
 
         // 3. ESPERAR PARA RESPAWN
         yield return new WaitForSeconds(respawnDelay);
@@ -64,6 +65,7 @@ public class BreakablePlatform : MonoBehaviour
         transform.position = originalPosition;
         if (col != null) col.enabled = true;
         if (spriteRenderer != null) spriteRenderer.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
 
         isBreaking = false; // Permite volver a romperse
     }
