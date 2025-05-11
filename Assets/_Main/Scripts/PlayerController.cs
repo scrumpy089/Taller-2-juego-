@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -65,18 +66,33 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting = false;
     public float sprintMultiplier = 2f;
 
+    private int jumpCount = 0;
+    public int maxJumps = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
         playerAnimator = GetComponent<Animator>();  
-        hit_ps = GetComponentInChildren<ParticleSystem>(); 
+        hit_ps = GetComponentInChildren<ParticleSystem>();
 
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        // En nivel 1 solo puede hacer un salto, en nivel 2 o más: doble salto
+        if (currentScene == 2) // o el índice del nivel donde desbloqueas doble salto
+        {
+            maxJumps = 1;
+        }
+        else
+        {
+            maxJumps = 1;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Physics2D.OverlapCircle(groundCheck.position, groundRadius, GroundLayer))
         {
             canJump = true;
@@ -85,13 +101,29 @@ public class PlayerController : MonoBehaviour
         {
             canJump = false;
         }
+        */
 
-        
+        bool grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, GroundLayer);
+        canJump = grounded;
 
+        if (grounded)
+        {
+            jumpCount = 0; 
+        }
+
+        /*
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && canJump == true)
         {          
             playerAnimator.SetTrigger("IsJumping");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
+        }
+        */
+
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
+        {
+            playerAnimator.SetTrigger("IsJumping");
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpCount++;
         }
 
         playerAnimator.SetFloat("IsMoving", movement);

@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class passlvl1 : MonoBehaviour
+public class passlvl : MonoBehaviour
 {
+    public int scene;
+
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(scene);
         }
 
     }
