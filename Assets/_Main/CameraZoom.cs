@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
@@ -7,8 +8,9 @@ public class CameraZoom : MonoBehaviour
 
     public float targetZoom = 5f; // Nuevo ortho size deseado
     public float zoomSpeed = 2f;  // Qué tan rápido se interpola
+    public Transform offsetObject;
 
-    private Cinemachine.CinemachineVirtualCamera vcam;
+    private CinemachineVirtualCamera vcam;
     //private bool playerInside = false;
 
     // Start is called before the first frame update
@@ -30,6 +32,7 @@ public class CameraZoom : MonoBehaviour
             //playerInside = true;
             StopAllCoroutines();
             StartCoroutine(ZoomIn());
+            vcam.Follow = offsetObject;
         }
     }
 
@@ -40,10 +43,11 @@ public class CameraZoom : MonoBehaviour
             //playerInside = false;
             StopAllCoroutines();
             StartCoroutine(ZoomOut());
+            vcam.Follow = other.transform;
         }
     }
 
-    System.Collections.IEnumerator ZoomIn()
+    IEnumerator ZoomIn()
     {
         while (Mathf.Abs(vcam.m_Lens.OrthographicSize - targetZoom) > 0.05f)
         {
