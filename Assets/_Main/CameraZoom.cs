@@ -56,7 +56,7 @@ public class CameraZoom : MonoBehaviour
         }
     }
 
-    System.Collections.IEnumerator ZoomOut()
+    IEnumerator ZoomOut()
     {
         float defaultZoom = 7f; // tamaño original
         while (Mathf.Abs(vcam.m_Lens.OrthographicSize - defaultZoom) > 0.05f)

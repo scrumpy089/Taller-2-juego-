@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Private Variables")]  
+    [Header("Private Variables")]
     [Space]
 
     [Tooltip("La vida máxima que el jugador puede tener (se puede modificar desde Unity).")]
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private float movement;
 
-    [Header("Public Variables")] 
+    [Header("Public Variables")]
     [Space]
 
     [Tooltip("La vida actual del jugador.")]
@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     private int jumpCount = 0;
     public int maxJumps = 1;
+
+    public GameObject wrenchObject;
 
     // Start is called before the first frame update
     void Start()
@@ -119,7 +121,8 @@ public class PlayerController : MonoBehaviour
         }
         */
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
+        if ((//Input.GetKeyDown(KeyCode.Space) ||
+            Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
         {
             playerAnimator.SetTrigger("IsJumping");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -162,6 +165,14 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerAnimator.SetTrigger("Attack");
+            wrenchObject.SetActive(true);
+            wrenchObject.GetComponentInChildren<Wrench>().StartAttack();
+        }
+        
 
         playerAnimator.SetBool("IsSprinting", isSprinting);
 
