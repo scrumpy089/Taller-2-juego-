@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 140783445}
   - component: {fileID: 140783447}
   - component: {fileID: 140783446}
+  - component: {fileID: 140783448}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -312,6 +313,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140783444}
   m_CullTransparentMesh: 1
+--- !u!95 &140783448
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140783444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6909e2168a0632d48b9670842f65ea19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &160353480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,10 +1959,14 @@ PolygonCollider2D:
       - {x: 106.99335, y: 23.818485}
       - {x: -25.018873, y: 24.74984}
       - {x: -24.95793, y: -27.074617}
-      - {x: 232.82924, y: -31.233665}
-      - {x: 258.7648, y: -48.277935}
-      - {x: 623.67236, y: -49.91369}
+      - {x: 239.54242, y: -27.317642}
+      - {x: 264.3591, y: -45.853733}
+      - {x: 624.0453, y: -44.132904}
       - {x: 623.10156, y: 7.537113}
+      - {x: 370.0653, y: 4.322109}
+      - {x: 369.48715, y: 20.32588}
+      - {x: 283.08292, y: 22.512026}
+      - {x: 282.18546, y: 44.42713}
       - {x: 223.55803, y: 44.424755}
   m_UseDelaunayMesh: 0
 --- !u!66 &951060970
@@ -1982,8 +2008,18 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 951060969}
     m_ColliderPaths:
-    - - X: 6231015424
+    - - X: 6240453120
+        Y: -441329056
+      - X: 6231015424
         Y: 75371128
+      - X: 3700653056
+        Y: 43221092
+      - X: 3694871552
+        Y: 203258800
+      - X: 2830829056
+        Y: 225120256
+      - X: 2821854464
+        Y: 444271328
       - X: 2235580416
         Y: 444247552
       - X: 1076670976
@@ -1994,23 +2030,25 @@ CompositeCollider2D:
         Y: 247498400
       - X: -249579296
         Y: -270746176
-      - X: 2328292352
-        Y: -312336640
-      - X: 2587648000
-        Y: -482779360
-      - X: 6236723712
-        Y: -499136896
+      - X: 2395424256
+        Y: -273176416
+      - X: 2643590912
+        Y: -458537344
   m_CompositePaths:
     m_Paths:
-    - - {x: 623.6723, y: -49.91369}
-      - {x: 623.1015, y: 7.537115}
+    - - {x: 264.3591, y: -45.85373}
+      - {x: 624.04535, y: -44.132877}
+      - {x: 623.1015, y: 7.5371127}
+      - {x: 370.0653, y: 4.322138}
+      - {x: 369.48712, y: 20.32588}
+      - {x: 283.08292, y: 22.512053}
+      - {x: 282.18542, y: 44.42713}
       - {x: 223.55804, y: 44.424755}
       - {x: 107.6671, y: 38.64548}
       - {x: 106.99332, y: 23.818485}
       - {x: -25.018873, y: 24.749811}
       - {x: -24.957901, y: -27.074617}
-      - {x: 232.82924, y: -31.233667}
-      - {x: 258.7648, y: -48.277935}
+      - {x: 239.54243, y: -27.317648}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -30463,7 +30501,7 @@ Transform:
   m_GameObject: {fileID: 1965398458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5230703, y: -11.230269, z: -10}
+  m_LocalPosition: {x: -7.523287, y: -11.04392, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

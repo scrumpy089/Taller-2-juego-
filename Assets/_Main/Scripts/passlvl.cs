@@ -16,4 +16,14 @@ public class passlvl : MonoBehaviour
         }
 
     }
+
+    public void play()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void exit()
+    {
+      
+    }
 }
