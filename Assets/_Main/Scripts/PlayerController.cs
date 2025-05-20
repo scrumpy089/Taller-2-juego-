@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Space]
 
     [Tooltip("La vida máxima que el jugador puede tener (se puede modificar desde Unity).")]
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float maxHealth = 4;
     [Tooltip("Referencia al Rigidbody2D del jugador, usado para aplicar física y movimiento.")]
     [SerializeField] private Rigidbody2D rb;
     [Tooltip("Un transform que indica la posición donde se verifica si el jugador está tocando el suelo.")]
@@ -71,9 +71,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject wrenchObject;
 
+    [SerializeField] private Animator lifeBarAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
+        health = 4;
         rb = GetComponent<Rigidbody2D>(); 
         playerAnimator = GetComponent<Animator>();  
         hit_ps = GetComponentInChildren<ParticleSystem>();
@@ -230,20 +233,25 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage; 
-        healthText.text = $"Health: {health}/{maxHealth}"; 
+        //healthText.text = $"Health: {health}/{maxHealth}"; 
 
+        if (health < 0)
+        {  
+            health = 0; 
+        }
+
+        lifeBarAnimator.SetInteger("HealthLevel", (int)health);
+
+        //ParticleSystem.Burst burst = hit_ps.emission.GetBurst(0);  
+        //ParticleSystem.MinMaxCurve count = burst.count; 
+
+        //count.constant = particleCount;  
+        //burst.count = count;  
+
+        //hit_ps.emission.SetBurst(0, burst);  
+        //hit_ps.textureSheetAnimation.SetSprite(0, particleSprites[spriteIndex]);
         
-
-        ParticleSystem.Burst burst = hit_ps.emission.GetBurst(0);  
-        ParticleSystem.MinMaxCurve count = burst.count; 
-
-        count.constant = particleCount;  
-        burst.count = count;  
-
-        hit_ps.emission.SetBurst(0, burst);  
-        hit_ps.textureSheetAnimation.SetSprite(0, particleSprites[spriteIndex]);
-        ;
-        hit_ps.Play(); 
+        //hit_ps.Play(); 
        
 
     }
@@ -261,7 +269,9 @@ public class PlayerController : MonoBehaviour
             health += _health; 
         }
 
-        healthText.text = $"Health: {health}/{maxHealth}"; 
+        lifeBarAnimator.SetInteger("HealthLevel", (int)health);
+
+        //healthText.text = $"Health: {health}/{maxHealth}"; 
 
         ParticleSystem.Burst burst = hit_ps.emission.GetBurst(0);   
         ParticleSystem.MinMaxCurve count = burst.count; 
