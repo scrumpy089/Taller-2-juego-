@@ -135,10 +135,17 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetFloat("IsMoving", movement);
 
         movement = Input.GetAxisRaw("Horizontal");
+        //movement = 0f;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            movement = 0f;
+        }
 
         // Detecta Sprint a la derecha
         if (Input.GetKeyDown(KeyCode.D))
         {
+            
             if (Time.time - lastTapTimeRight < doubleTapThreshold)
             {
                 isSprinting = true;
@@ -153,6 +160,7 @@ public class PlayerController : MonoBehaviour
         // Detecta Sprint a la derecha
         if (Input.GetKeyDown(KeyCode.A))
         {
+            
             if (Time.time - lastTapTimeLeft < doubleTapThreshold)
             {
                 isSprinting = true;
@@ -197,9 +205,10 @@ public class PlayerController : MonoBehaviour
 
         if (hitTime <= 0)  
         {
-            
+
             //transform.Translate(Time.deltaTime * (Vector2.right * movement) * speed);
             transform.Translate(Time.deltaTime * Vector2.right * movement * speed * (isSprinting ? sprintMultiplier : 1f));
+            //rb.velocity = new Vector2(movement * speed * (isSprinting ? sprintMultiplier : 1f), rb.velocity.y);
 
         }
         else  
@@ -216,10 +225,9 @@ public class PlayerController : MonoBehaviour
             hitTime -= Time.deltaTime;  
 
             //playerAnimator.SetTrigger("IsAttacked");  
-
-            
-
+        
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
