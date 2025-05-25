@@ -23322,9 +23322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d060c483488270141b23c94bcb2f41ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetZoom: 5
+  targetZoom: 8
   zoomSpeed: 2
-  offsetObject: {fileID: 0}
+  offsetObject: {fileID: 1493816062}
 --- !u!61 &753812097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124875,6 +124875,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!4 &1493816062 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7273666369028347525, guid: 158049fb73ba1cb4aa7c2c60182c5b77, type: 3}
+  m_PrefabInstance: {fileID: 3517309815401127854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1494283655
 GameObject:
   m_ObjectHideFlags: 0
