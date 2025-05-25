@@ -124,7 +124,7 @@ public class EnemyBehavior : MonoBehaviour
             }
 
             // Activa el trigger en el Animator para iniciar la animación de ataque del enemigo.
-            enemyAnimator.SetTrigger("IsAttacked");
+            //enemyAnimator.SetTrigger("IsAttacked");
 
 
         }

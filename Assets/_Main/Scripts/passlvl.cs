@@ -27,6 +27,11 @@ public class passlvl : MonoBehaviour
         SceneManager.LoadScene(7);
     }
 
+    public void main()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void exit()
     {
       Application.Quit();
