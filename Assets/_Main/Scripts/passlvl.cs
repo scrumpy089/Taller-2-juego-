@@ -18,8 +18,8 @@ public class passlvl : MonoBehaviour
     }
 
     public void play()
-    {
-        SceneManager.LoadScene(1);
+    {     
+        SceneManager.LoadScene(1); 
     }
 
     public void tutorial()
@@ -36,4 +36,18 @@ public class passlvl : MonoBehaviour
     {
       Application.Quit();
     }
+
+    public void Retry()
+    {
+        if (Respawn.Instance != null && Respawn.Instance.hasCheckpoint)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(Respawn.Instance.checkpointSceneIndex);
+        }
+        else
+        {
+            // Si no hay checkpoint, recarga el nivel actual (o uno por defecto)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1); // reemplaza 1 con tu primer nivel
+        }
+    }
+
 }

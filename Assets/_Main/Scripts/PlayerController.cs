@@ -72,12 +72,21 @@ public class PlayerController : MonoBehaviour
     public GameObject wrenchObject;
 
     [SerializeField] private Animator lifeBarAnimator;
+    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         health = 4;
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+
+        if (Respawn.Instance != null &&
+        Respawn.Instance.hasCheckpoint &&
+        UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == Respawn.Instance.checkpointSceneIndex)
+        {
+            transform.position = Respawn.Instance.checkpointPosition;
+        }
+
         playerAnimator = GetComponent<Animator>();  
         hit_ps = GetComponentInChildren<ParticleSystem>();
 
@@ -179,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            soundEffectPlayer.PlayHitSound();
             playerAnimator.SetTrigger("Attack");
             wrenchObject.SetActive(true);
             wrenchObject.GetComponentInChildren<Wrench>().StartAttack();
@@ -230,6 +240,14 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeathZone"))
+        {
+            TakeDamage(health);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -240,6 +258,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        soundEffectPlayer.PlayDamageSound();
         health -= damage; 
         //healthText.text = $"Health: {health}/{maxHealth}"; 
 
@@ -258,8 +277,14 @@ public class PlayerController : MonoBehaviour
 
         //hit_ps.emission.SetBurst(0, burst);  
         //hit_ps.textureSheetAnimation.SetSprite(0, particleSprites[spriteIndex]);
-        
+
         //hit_ps.Play(); 
+
+        if (health <= 0)
+        {
+            soundEffectPlayer.PlayDeathSound(); 
+            SceneManager.LoadScene(5);
+        }
        
 
     }
@@ -267,6 +292,7 @@ public class PlayerController : MonoBehaviour
     // Función para agregar salud al jugador.
     public void AddHealth(float _health)
     {
+        soundEffectPlayer.PlayHealSound();
         if (health + _health > maxHealth)  
         {
             health = maxHealth;
