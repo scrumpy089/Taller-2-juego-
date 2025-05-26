@@ -347,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &755992993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -878,10 +878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e75083e16c67e488277065fd50b19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckpointPosition: {x: 0, y: 0, z: 0}
-  lastLevelIndex: 0
-  checkpointID: 
-  respawnAfterDeath: 0
+  checkpointPosition: {x: 0, y: 0, z: 0}
+  checkpointSceneIndex: -1
+  hasCheckpoint: 0
 --- !u!1 &1649115246
 GameObject:
   m_ObjectHideFlags: 0

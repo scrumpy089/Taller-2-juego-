@@ -298,8 +298,8 @@ MonoBehaviour:
   enemySpeed: 7
   detectionRadius: 0.5
   enemyDamage: 1
-  enemyHitStrengthX: 2
-  enemyHitStrengthY: 2
+  enemyHitStrengthX: 0
+  enemyHitStrengthY: 0
   hitTime: 0
   particles: 0
   enemyIndex: 0

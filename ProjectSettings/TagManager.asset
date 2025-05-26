@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - DeathZone
   - Checkpoint
+  - Wrench
   layers:
   - Default
   - TransparentFX

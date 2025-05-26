@@ -307,17 +307,17 @@ public class PlayerController : MonoBehaviour
 
         //healthText.text = $"Health: {health}/{maxHealth}"; 
 
-        ParticleSystem.Burst burst = hit_ps.emission.GetBurst(0);   
-        ParticleSystem.MinMaxCurve count = burst.count; 
+        //ParticleSystem.Burst burst = hit_ps.emission.GetBurst(0);   
+        //ParticleSystem.MinMaxCurve count = burst.count; 
 
-        count.constant = particleCount; 
-        burst.count = count;  
+       // count.constant = particleCount; 
+       // burst.count = count;  
 
-        hit_ps.emission.SetBurst(0, burst);  
+       // hit_ps.emission.SetBurst(0, burst);  
 
-        hit_ps.textureSheetAnimation.SetSprite(0, particleSprites[spriteIndex]);
-        ;
-        hit_ps.Play();
+       // hit_ps.textureSheetAnimation.SetSprite(0, particleSprites[spriteIndex]);
+        
+        //hit_ps.Play();
     }
 
     IEnumerator ResetPlatform()

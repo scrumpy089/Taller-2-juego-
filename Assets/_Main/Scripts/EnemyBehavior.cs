@@ -124,9 +124,19 @@ public class EnemyBehavior : MonoBehaviour
             }
 
             // Activa el trigger en el Animator para iniciar la animación de ataque del enemigo.
-            //enemyAnimator.SetTrigger("IsAttacked");
-
+            enemyAnimator.SetTrigger("Attack");
 
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wrench"))
+        {
+            enemyAnimator.SetTrigger("Hitted");
+
+            this.gameObject.SetActive(false);
+        }
+
     }
 }
