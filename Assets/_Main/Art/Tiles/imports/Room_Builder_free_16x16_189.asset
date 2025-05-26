@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Room_Builder_free_16x16_189
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 644004493, guid: bfc209a9e8c288847a369a717c144d9a, type: 3}
+  m_Sprite: {fileID: -1452085084, guid: bff1a30ccad90bf4f8868498bd2c3259, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
