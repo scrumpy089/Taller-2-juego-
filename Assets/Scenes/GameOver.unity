@@ -206,7 +206,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1087105365}
         m_TargetAssemblyTypeName: passlvl, Assembly-CSharp
-        m_MethodName: main
+        m_MethodName: ReturnToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

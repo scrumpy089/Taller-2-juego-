@@ -30,4 +30,10 @@ public class Respawn : MonoBehaviour
         checkpointSceneIndex = sceneIndex;
         hasCheckpoint = true;
     }
+    public void ResetCheckpoint()
+    {
+        hasCheckpoint = false;
+        checkpointSceneIndex = -1;
+        checkpointPosition = Vector3.zero;
+    }
 }

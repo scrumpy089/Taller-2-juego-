@@ -49,5 +49,14 @@ public class passlvl : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(1); // reemplaza 1 con tu primer nivel
         }
     }
+    public void ReturnToMenu()
+    {
+        if (Respawn.Instance != null)
+        {
+            Respawn.Instance.ResetCheckpoint();
+        }
+
+        SceneManager.LoadScene(0); // o el índice/nombre de tu menú principal
+    }
 
 }

@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (grounded)
         {
-            jumpCount = 0; 
+            jumpCount = 0;
         }
 
         /*
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         */
 
         if ((//Input.GetKeyDown(KeyCode.Space) ||
-            Input.GetKeyDown(KeyCode.W)) && jumpCount < maxJumps)
+            Input.GetKeyDown(KeyCode.W)) && jumpCount <= maxJumps)
         {
             playerAnimator.SetTrigger("IsJumping");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
