@@ -5,7 +5,8 @@ using UnityEngine;
 public class Minigametrigger : MonoBehaviour
 {
     public GameObject minigameUI;
-    public GameObject interactionPrompt; // Este será el globo/mensaje
+    public GameObject interactionPrompt;// Este será el globo/mensaje
+    public GameObject interactionPrompt2;
     private bool playerInRange = false;
 
     void Start()
@@ -42,7 +43,10 @@ public class Minigametrigger : MonoBehaviour
         {
             playerInRange = true;
             if (interactionPrompt != null)
-                interactionPrompt.SetActive(true); // MOSTRAMOS el mensaje
+            {
+                interactionPrompt.SetActive(true);
+                interactionPrompt2.SetActive(true);// MOSTRAMOS el mensaje
+            }
         }
     }
 
@@ -52,7 +56,11 @@ public class Minigametrigger : MonoBehaviour
         {
             playerInRange = false;
             if (interactionPrompt != null)
+            {
                 interactionPrompt.SetActive(false); // OCULTAMOS el mensaje
+                interactionPrompt2.SetActive(false);
+            }
+
         }
     }
 }
