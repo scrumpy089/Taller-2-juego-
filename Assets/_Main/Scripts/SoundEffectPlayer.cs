@@ -11,6 +11,8 @@ public class SoundEffectPlayer : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip healSound;
     [SerializeField] private AudioClip cocoHitSound;
+    [SerializeField] private AudioClip JumpSound;
+    [SerializeField] private AudioClip WalkSound;
 
     // Start is called before the first frame update
     void Start()
@@ -45,5 +47,13 @@ public class SoundEffectPlayer : MonoBehaviour
     {
         sfxSource.PlayOneShot(cocoHitSound);
     }
+    public void PlayJumpSound()
+    {
+        sfxSource.PlayOneShot(JumpSound);
+    }
 
+    public void PlayWalkSound()
+    {
+        sfxSource.PlayOneShot(WalkSound);
+    }
 }

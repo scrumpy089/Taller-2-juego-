@@ -137,6 +137,8 @@ public class PlayerController : MonoBehaviour
             Input.GetKeyDown(KeyCode.W)) && jumpCount <= maxJumps)
         {
             playerAnimator.SetTrigger("IsJumping");
+            soundEffectPlayer.PlayJumpSound();
+
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpCount++;
         }
