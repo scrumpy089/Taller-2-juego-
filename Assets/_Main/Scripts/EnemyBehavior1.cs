@@ -36,6 +36,11 @@ public class EnemyBehavior1 : MonoBehaviour
     [SerializeField] public int hitTime;
     [SerializeField] public int particles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip[] EnemyAttackSound;
+
+    [Header("")]
     public int enemyIndex;
 
     // Start is called before the first frame update
@@ -124,12 +129,26 @@ public class EnemyBehavior1 : MonoBehaviour
                 player.hitFromRight = false;  // El jugador está siendo golpeado desde la izquierda del enemigo.
             }
 
+            soundAttack();  // Reproduce el sonido de ataque del enemigo.
+
             // Activa el trigger en el Animator para iniciar la animación de ataque del enemigo.
             enemyAnimator.SetTrigger("Attack");
 
         }
 
     }
+
+    public void soundAttack()
+    {
+        if (EnemyAttackSound.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, EnemyAttackSound.Length);
+
+        sfxSource.PlayOneShot(EnemyAttackSound[randomIndex]);
+    }
+
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Wrench"))
@@ -138,6 +157,4 @@ public class EnemyBehavior1 : MonoBehaviour
         }
 
     }
-
-
 }

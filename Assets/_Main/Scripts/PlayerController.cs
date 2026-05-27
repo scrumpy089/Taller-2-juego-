@@ -156,7 +156,8 @@ public class PlayerController : MonoBehaviour
         // Detecta Sprint a la derecha
         if (Input.GetKeyDown(KeyCode.D))
         {
-            
+            soundEffectPlayer.PlayWalkSound();
+
             if (Time.time - lastTapTimeRight < doubleTapThreshold)
             {
                 isSprinting = true;
@@ -171,7 +172,8 @@ public class PlayerController : MonoBehaviour
         // Detecta Sprint a la derecha
         if (Input.GetKeyDown(KeyCode.A))
         {
-            
+            soundEffectPlayer.PlayWalkSound();
+
             if (Time.time - lastTapTimeLeft < doubleTapThreshold)
             {
                 isSprinting = true;
