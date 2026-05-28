@@ -11,6 +11,7 @@ TagManager:
   - Checkpoint
   - Wrench
   - SceneChange
+  - Boss
   layers:
   - Default
   - TransparentFX

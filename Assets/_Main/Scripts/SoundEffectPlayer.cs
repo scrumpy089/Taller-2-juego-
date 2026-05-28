@@ -12,6 +12,7 @@ public class SoundEffectPlayer : MonoBehaviour
     [SerializeField] private AudioClip damageTakenSound;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip healSound;
+    [SerializeField] private AudioClip dialogueSound;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkSound;
 
@@ -72,6 +73,7 @@ public class SoundEffectPlayer : MonoBehaviour
     public void PlayHealSound()
     {
         sfxSource.PlayOneShot(healSound);
+        sfxSource.PlayOneShot(dialogueSound,0.7f);
     }
 
     public void PlayJumpSound()

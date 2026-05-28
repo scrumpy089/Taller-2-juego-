@@ -44,7 +44,7 @@ public class EnemyBehavior : MonoBehaviour
 
     [Header("Death Audio")]
     [SerializeField] private AudioClip enemyDeathSound;
-    [SerializeField] private float enemyDeathVolume = 1f;
+    [SerializeField] private float enemyDeathVolume = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -147,7 +147,7 @@ public class EnemyBehavior : MonoBehaviour
 
         int randomIndex = Random.Range(0, EnemyAttackSound.Length);
 
-        sfxSource.PlayOneShot(EnemyAttackSound[randomIndex]);
+        sfxSource.PlayOneShot(EnemyAttackSound[randomIndex],2f);
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -161,7 +161,7 @@ public class EnemyBehavior : MonoBehaviour
                 AudioSource.PlayClipAtPoint(enemyDeathSound, transform.position, enemyDeathVolume);
             }
 
-            this.gameObject.SetActive(false);
+            StartCoroutine(DisableEnemy());
         }
 
     }
