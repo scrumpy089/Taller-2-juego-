@@ -740,7 +740,7 @@ PrefabInstance:
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1628959800}
+      objectReference: {fileID: 0}
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -751,7 +751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ReturnToMenu
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -759,11 +759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: passlvl, Assembly-CSharp
+      value: SoundEffectPlayer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3049711347209871786, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4435968348131035274, guid: e7115b40029e4f64ca30e4364d0c33d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2507,7 +2507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: 6
-  soundEffectPlayer: {fileID: 0}
+  soundEffectPlayer: {fileID: 1708078420}
 --- !u!61 &519258574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45181,17 +45181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6e75f6d483360943bf230a950b5306d, type: 3}
---- !u!114 &1628959800 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5955582842519270568, guid: f6e75f6d483360943bf230a950b5306d, type: 3}
-  m_PrefabInstance: {fileID: 1628959799}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efaf62181df1f64ca5d11fa18f75270, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1628959801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6203648942965306897, guid: f6e75f6d483360943bf230a950b5306d, type: 3}
