@@ -43,6 +43,10 @@ public class EnemyBehavior1 : MonoBehaviour
     [Header("")]
     public int enemyIndex;
 
+    [Header("Death Audio")]
+    [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private float enemyDeathVolume = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -147,14 +151,29 @@ public class EnemyBehavior1 : MonoBehaviour
 
         sfxSource.PlayOneShot(EnemyAttackSound[randomIndex]);
     }
-
-
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Wrench"))
         {
+            enemyAnimator.SetTrigger("Hitted");
+
+            if (enemyDeathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(enemyDeathSound, transform.position, enemyDeathVolume);
+            }
+
             this.gameObject.SetActive(false);
         }
 
+    }
+    private IEnumerator DisableEnemy()
+    {
+        GetComponent<Collider2D>().enabled = false;
+
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(0.4f);
+
+        gameObject.SetActive(false);
     }
 }

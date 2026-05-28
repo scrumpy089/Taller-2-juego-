@@ -10,6 +10,7 @@ TagManager:
   - DeathZone
   - Checkpoint
   - Wrench
+  - SceneChange
   layers:
   - Default
   - TransparentFX

@@ -36,9 +36,16 @@ public class EnemyBehavior2 : MonoBehaviour
     [SerializeField] public int hitTime;
     [SerializeField] public int particles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip[] CocoAttackSound;
+
+    [Header("")]
     public int enemyIndex;
 
-    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
+    [Header("Death Audio")]
+    [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private float enemyDeathVolume = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -128,28 +135,46 @@ public class EnemyBehavior2 : MonoBehaviour
 
             int randomAttack = Random.Range(0, 2);
 
-            if (randomAttack == 0)
-            {
-                enemyAnimator.SetTrigger("Attack");
-            }
-            else
-            {
-                enemyAnimator.SetTrigger("Attack2");
-            }
+            enemyAnimator.SetTrigger(randomAttack == 0 ? "Attack" : "Attack2");
 
-            soundEffectPlayer.PlayCocoHitSound();
+            SoundCocoAttack();
 
         }
 
+    }
+
+    public void SoundCocoAttack()
+    {
+        if (CocoAttackSound.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, CocoAttackSound.Length);
+
+        sfxSource.PlayOneShot(CocoAttackSound[randomIndex]);
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Wrench"))
         {
+            enemyAnimator.SetTrigger("Hitted");
+
+            if (enemyDeathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(enemyDeathSound, transform.position, enemyDeathVolume);
+            }
+
             this.gameObject.SetActive(false);
         }
 
     }
+    private IEnumerator DisableEnemy()
+    {
+        GetComponent<Collider2D>().enabled = false;
 
+        rb.velocity = Vector2.zero;
 
+        yield return new WaitForSeconds(0.4f);
+
+        gameObject.SetActive(false);
+    }
 }

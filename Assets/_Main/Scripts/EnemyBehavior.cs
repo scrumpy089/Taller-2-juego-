@@ -39,7 +39,12 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip[] EnemyAttackSound;
 
+    [Header("")]
     public int enemyIndex;
+
+    [Header("Death Audio")]
+    [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private float enemyDeathVolume = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -127,7 +132,7 @@ public class EnemyBehavior : MonoBehaviour
                 player.hitFromRight = false;  // El jugador está siendo golpeado desde la izquierda del enemigo.
             }
 
-            soundAttack();  // Reproduce el sonido de ataque del enemigo.
+            humanAttack();
 
             // Activa el trigger en el Animator para iniciar la animación de ataque del enemigo.
             enemyAnimator.SetTrigger("Attack");
@@ -135,7 +140,7 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    public void soundAttack()
+    public void humanAttack()
     {
         if (EnemyAttackSound.Length == 0)
             return;
@@ -151,8 +156,23 @@ public class EnemyBehavior : MonoBehaviour
         {
             enemyAnimator.SetTrigger("Hitted");
 
+            if (enemyDeathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(enemyDeathSound, transform.position, enemyDeathVolume);
+            }
+
             this.gameObject.SetActive(false);
         }
 
+    }
+    private IEnumerator DisableEnemy()
+    {
+        GetComponent<Collider2D>().enabled = false;
+
+        rb.velocity = Vector2.zero;
+
+        yield return new WaitForSeconds(0.4f);
+
+        gameObject.SetActive(false);
     }
 }

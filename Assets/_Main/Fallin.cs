@@ -12,6 +12,11 @@ public class Fallin : MonoBehaviour
     private Collider2D col;
     public float damage;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip fallSound;
+    [SerializeField] private AudioClip impactSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,11 @@ public class Fallin : MonoBehaviour
 
         // Caída
         rb.bodyType = RigidbodyType2D.Dynamic;
+
+        if (fallSound != null)
+        {
+            sfxSource.PlayOneShot(fallSound);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,6 +68,11 @@ public class Fallin : MonoBehaviour
         // Si colisiona con el suelo
         else if (collision.CompareTag("Ground"))
         {
+            if (impactSound != null)
+            {
+                sfxSource.PlayOneShot(impactSound);
+            }
+
             StartCoroutine(ResetTrap());
         }
     }

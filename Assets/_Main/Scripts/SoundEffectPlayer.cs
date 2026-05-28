@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,31 +12,48 @@ public class SoundEffectPlayer : MonoBehaviour
     [SerializeField] private AudioClip damageTakenSound;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip healSound;
-    [SerializeField] private AudioClip JumpSound;
-    [SerializeField] private AudioClip WalkSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip walkSound;
 
-    [Header("Enemy Attack Sounds")]
-    [SerializeField] private AudioClip[] humanAttackSound;
-    //[SerializeField] private AudioClip[] trashAttackSound;
-    //[SerializeField] private AudioClip cucarachoAttackSound;
-    [SerializeField] private AudioClip[] cocoHitSound;
+    [Header("UI Sounds")]
+    [SerializeField] private AudioClip buttonClickSound;
+    [SerializeField] private AudioClip sceneChangeSound;
 
-    [Header("Scene Transition Sounds")]
-    [SerializeField] private AudioClip sceneChange;
-
-    // Start is called before the first frame update
-    void Start()
+    public void PlayButtonSound()
     {
-
-        sfxSource.PlayOneShot(sceneChange);
-
+        sfxSource.PlayOneShot(buttonClickSound, 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeSceneWithSound(int sceneIndex)
     {
-
+        StartCoroutine(ChangeSceneRoutine(sceneIndex));
     }
+
+    private IEnumerator ChangeSceneRoutine(int sceneIndex)
+    {
+        sfxSource.PlayOneShot(sceneChangeSound, 1f);
+
+        yield return new WaitForSecondsRealtime(sceneChangeSound.length);
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void ChangeSceneWithSound2(int sceneIndex)
+    {
+        StartCoroutine(ChangeSceneRoutine2(sceneIndex));
+    }
+
+    private IEnumerator ChangeSceneRoutine2(int sceneIndex)
+    {
+        sfxSource.PlayOneShot(buttonClickSound, 1f);
+
+        yield return new WaitForSecondsRealtime(sceneChangeSound.length);
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     public void PlayHitSound()
     {
         sfxSource.PlayOneShot(hitSound);
@@ -52,53 +68,19 @@ public class SoundEffectPlayer : MonoBehaviour
     {
         sfxSource.PlayOneShot(deathSound);
     }
+
     public void PlayHealSound()
     {
         sfxSource.PlayOneShot(healSound);
     }
+
     public void PlayJumpSound()
     {
-        sfxSource.PlayOneShot(JumpSound);
+        sfxSource.PlayOneShot(jumpSound, 0.5f);
     }
 
     public void PlayWalkSound()
     {
-        sfxSource.PlayOneShot(WalkSound);
+        sfxSource.PlayOneShot(walkSound, 1.5f);
     }
-    public void PlayCocoHitSound()
-    {
-        if (cocoHitSound.Length == 0)
-            return;
-
-        int randomIndex = Random.Range(0, cocoHitSound.Length);
-
-        sfxSource.PlayOneShot(cocoHitSound[randomIndex]);
-    }
-
-    public void humanAttack()
-    {
-        if (humanAttackSound.Length == 0)
-            return;
-
-        int randomIndex = Random.Range(0, humanAttackSound.Length);
-
-        sfxSource.PlayOneShot(humanAttackSound[randomIndex]);
-    }
-
-    /*
-    public void trashAttack()
-    {
-        if (trashAttackSound.Length == 0)
-            return;
-        int randomIndex = Random.Range(0, trashAttackSound.Length);
-        sfxSource.PlayOneShot(trashAttackSound[randomIndex]);
-    }
-    */
-
-    /*
-    public void cucarachoAttack()
-    {
-        sfxSource.PlayOneShot(cucarachoAttackSound);
-    }
-    */
 }

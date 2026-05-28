@@ -7,14 +7,14 @@ public class passlvl : MonoBehaviour
 {
     public int scene;
 
-    // Start is called before the first frame update
+    [SerializeField] private SoundEffectPlayer soundEffectPlayer;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(scene);
+            soundEffectPlayer.ChangeSceneWithSound(scene);
         }
-
     }
 
     public void play()

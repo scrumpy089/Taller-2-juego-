@@ -1,35 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
     public GameObject pauseUI;
 
-    // Start is called before the first frame update
+    [Header("Audio")]
+    [SerializeField] private AudioSource[] musicSources;
+    [SerializeField] private float pausedPitch = 0.55f;
+    [SerializeField] private float normalPitch = 1f;
+
+    private bool isPaused = false;
+
     void Start()
     {
-        
+        pauseUI.SetActive(false);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ActivatePause();
+            if (isPaused)
+            {
+                DeactivatePause();
+            }
+            else
+            {
+                ActivatePause();
+            }
         }
     }
 
-    void ActivatePause()
+    public void ActivatePause()
     {
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
+        isPaused = true;
+
+        foreach (AudioSource source in musicSources)
+        {
+            if (source != null)
+            {
+                source.pitch = pausedPitch;
+            }
+        }
     }
 
     public void DeactivatePause()
     {
         pauseUI.SetActive(false);
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        foreach (AudioSource source in musicSources)
+        {
+            if (source != null)
+            {
+                source.pitch = normalPitch;
+            }
+        }
     }
 }

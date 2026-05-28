@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         health = 4;
         rb = GetComponent<Rigidbody2D>();
 
@@ -250,6 +251,11 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(health);
         }
+        /*
+        if (collision.gameObject.CompareTag("SceneChange"))
+        {
+            //soundEffectPlayer.PlaySceneChangeSound();
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
